@@ -1,4 +1,4 @@
-defmodule MangalikeWeb.UserController do
+defmodule MangalikeWeb.SessionController do
   use MangalikeWeb, :controller
 
   alias Mangalike.Accounts
@@ -10,8 +10,12 @@ defmodule MangalikeWeb.UserController do
   end
 
   def new(conn, _params) do
-    changeset = Accounts.change_user(%User{})
-    render(conn, "new.html", changeset: changeset)
+    current_user = conn.assigns[:current_user]
+    if !current_user do 
+      changeset = Accounts.change_user(%User{})
+      render(conn, "new.html", changeset: changeset)
+
+    end
   end
 
   def create(conn, %{"user" => user_params}) do

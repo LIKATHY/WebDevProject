@@ -1,35 +1,92 @@
+<%# Attribute to Prof Nathaniel Tuck's class notes and code %>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Hello Mangalike!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-  </head>
+  <title>MangaLike!</title>
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+</head>
 
-  <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">MangaLike</a>
 
-      <main role="main">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item active">
+          <%= link "Users", to: user_path(@conn, :index), class: "nav-link" %>
+        </li>
+
+        <%= if @current_user do %>
+        <li class="nav-item active">
+          <%= link "My Profile", to: user_path(@conn, :show, @current_user), class: "nav-link"%>
+        </li>
+
+        <li class="nav-item active">
+          <%= link("Log Out", to: session_path(@conn, :logout), class: "nav-link", method: :delete) %>
+        </li>
+        <% end %>
+
+        <%= if !@current_user do %>
+        <li class="nav-item active">
+          <%= link "Create New", to: user_path(@conn, :new), class: "nav-link" %>
+        </li>
+        <% end %>
+
+
+      </ul>
+    </div>
+
+
+    <%= if @current_user do %>
+    <span class="text">
+      <%= @current_user.username %> 
+    </span> 
+
+    <% else %>
+      <%= form_for @conn, session_path(@conn, :login), 
+      [as: "user", class: "form-inline w-75"], fn _f -> %>
+        <input type="text" placeholder="email" 
+          class="form-control" name="email">
+        <input type="password" placeholder="password"
+          class="form-control" name="password">
+        <input type="submit" value="Log in" class="btn btn-primary">
+      <% end %>
+    <% end %>
+
+  </nav>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-sm-12 my-2">
+        <%= if get_flash(@conn, :info) do %> 
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <% end %>
+        <%= if get_flash(@conn, :error) do %> 
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <% end %>
+      </div>
+    </div>
+
         <%= render @view_module, @view_template, assigns %>
-      </main>
 
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-  </body>
+
+  </div>
+
+  <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+</body>
+
 </html>

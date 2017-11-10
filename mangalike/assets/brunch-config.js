@@ -48,6 +48,12 @@ exports.config = {
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
     }
+    sass: {
+      options: {
+        includePaths: ["node_modules/bootstrap/scss"],
+        precision: 8
+      }
+    }
   },
 
   modules: {
@@ -58,5 +64,11 @@ exports.config = {
 
   npm: {
     enabled: true
+    globals: {
+      $: 'jquery',
+      Popper: 'popper.js',
+      jQuery: 'jquery',
+      bootstrap: 'bootstrap'
+    }
   }
 };
