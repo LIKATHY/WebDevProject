@@ -34,4 +34,3 @@ defmodule MangalikeWeb.SessionController do
 
   end
 end
-

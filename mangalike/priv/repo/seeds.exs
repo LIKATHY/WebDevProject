@@ -9,3 +9,10 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias Mangalike.Repo
+alias Mangalike.Accounts.User
+
+Repo.delete_all(User)
+
+Repo.insert!(%User{name: "Admin", username: "Admin", email: "admin@admin.com", is_admin?: true})

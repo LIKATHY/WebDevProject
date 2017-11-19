@@ -29,7 +29,7 @@ defmodule MangalikeWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  scope "/api", MangalikeWeb do
-    pipe_through :api
-   end
+  # scope "/api", MangalikeWeb do
+  #   pipe_through :api
+  # end
 end

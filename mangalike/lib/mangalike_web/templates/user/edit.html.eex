@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<h2>Edit User</h2>
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Edit User</title>
-  </head>
+<%= render "form.html", Map.put(assigns, :action, user_path(@conn, :update, @user)) %>
 
-  <body>
-	<div class="col-md-9 mx-auto mt-5">
-		<div class="container">
-			<h2>Edit User!</h2>
-
-			<%= render "form.html", Map.put(assigns, :action, user_path(@conn, :update, @user)) %>
-
-			<span><%= link "Back", to: user_path(@conn, :index) %></span>
-		</div>
-	</div>
-   </body>
-</html>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>

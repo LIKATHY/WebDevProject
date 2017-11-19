@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<h2>New User</h2>
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Create New User!</title>
-  </head>
+<%= render "form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>
 
-  <body>
-  	<div class="col-md-6 mx-auto mt-5">
-	    <div class="container">
-	    	<h1>Create a New User Here!</h1><br>
-			<%= render "form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>
-		</div>
-	</div>
-  </body>
-</html>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>
