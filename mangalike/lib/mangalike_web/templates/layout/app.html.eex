@@ -1,3 +1,4 @@
+<%# Attribute to Prof Nathaniel Tuck's class notes and code %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Mangalike!</title>
+    <title>Welcome to Mangalike!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -54,12 +55,14 @@
     </span> 
 
     <% else %>
-    <%= form_for @conn, session_path(@conn, :login), 
-    [as: "user", class: "form-inline w-75"], fn f -> %>
-    <input type="text" placeholder="email" 
-    class="form-control" name="email">
-    <input type="submit" value="Log in" class="btn btn-primary">
-    <% end %>
+      <%= form_for @conn, session_path(@conn, :login), 
+      [as: "user", class: "form-inline w-75"], fn _f -> %>
+        <input type="text" placeholder="email" 
+          class="form-control" name="email">
+        <input type="password" placeholder="password"
+          class="form-control" name="password">
+        <input type="submit" value="Log in" class="btn btn-primary">
+      <% end %>
     <% end %>
 
   </nav>
