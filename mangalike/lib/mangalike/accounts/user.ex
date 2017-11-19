@@ -4,11 +4,11 @@ defmodule Mangalike.Accounts.User do
   import Ecto.Changeset
   alias Mangalike.Accounts.User
 
-
   schema "users" do
     field :email, :string
     field :name, :string
     field :username, :string
+    field :is_admin?, :boolean
     field :password_hash, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
@@ -19,7 +19,7 @@ defmodule Mangalike.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :username, :email, :password, :password_confirmation])
+    |> cast(attrs, [:name, :username, :email, :password, :password_confirmation, :is_admin?])
     |> validate_confirmation(:password)
     |> validate_password(:password)
     |> put_pass_hash()

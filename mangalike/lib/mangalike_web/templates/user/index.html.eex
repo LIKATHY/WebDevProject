@@ -28,3 +28,7 @@
 </table>
 
 <span><%= link "New User", to: user_path(@conn, :new) %></span>
+        
+        <%= if (@current_user.is_admin?) do %>
+        <p> YOU ARE ADMIN </p>
+        <% end %>
