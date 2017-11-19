@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :mangalike, Mangalike.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "mangalike",
-  password: "mangalike",
+  username: "postgres",
+  password: "eiz2naeSee",
   database: "mangalike_dev",
   hostname: "localhost",
   pool_size: 10

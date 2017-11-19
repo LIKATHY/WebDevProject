@@ -1,4 +1,4 @@
-defmodule MangalikeWeb.SessionController do
+defmodule MangalikeWeb.UserController do
   use MangalikeWeb, :controller
 
   alias Mangalike.Accounts

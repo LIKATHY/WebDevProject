@@ -1,0 +1,24 @@
+<h2><%= @manga["title"] %> Information </h2>
+<ul>
+	<li>
+		<strong>Summary:</strong>
+		<%= @manga["description"] %>
+	</li>
+	<li>
+		<strong>Artist:</strong>
+		<%= @manga["artist"] %>
+	</li>
+	<li>
+		<strong>Author:</strong>
+		<%= @manga["author"] %>
+	</li>
+	<li>
+		<strong>Genres:</strong>
+		<ul>
+			<%= for category <- @manga["categories"] do %>
+			<li><%= category %></li>
+			<% end %>
+		</ul>
+	</li>
+</ul>
+<span><%= link "Back", to: serie_path(@conn, :index) %></span>

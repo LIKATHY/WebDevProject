@@ -1,0 +1,5 @@
+<h2>Edit Serie</h2>
+
+<%= render "form.html", Map.put(assigns, :action, serie_path(@conn, :update, @serie)) %>
+
+<span><%= link "Back", to: serie_path(@conn, :index) %></span>

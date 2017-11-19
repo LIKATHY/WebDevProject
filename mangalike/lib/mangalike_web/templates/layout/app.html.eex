@@ -29,6 +29,10 @@
           <%= link "Users", to: user_path(@conn, :index), class: "nav-link" %>
         </li>
 
+        <li class="nav-item active">
+          <%= link "All Manga", to: serie_path(@conn, :index), class: "nav-link" %>
+        </li>
+
         <%= if @current_user do %>
         <li class="nav-item active">
           <%= link "My Profile", to: user_path(@conn, :show, @current_user), class: "nav-link"%>

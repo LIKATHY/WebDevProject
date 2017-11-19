@@ -1,0 +1,10 @@
+<h2>Chat room: <%= @manga["title"] %></h2>
+
+<div id="messages"></div>
+<input id="chat-input" type="text" size="80" placeholder="Write a message and press enter!"></input>
+
+<div>
+<span><%= link "Back", to: chat_path(@conn, :index) %></span>
+</div>
+
+<script>window.roomName = "<%= @manga["title"] %>";</script>

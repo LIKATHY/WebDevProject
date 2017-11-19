@@ -1,0 +1,23 @@
+<h2>Listing Manga</h2>
+
+<%= link "Random", to: serie_path(@conn, :show, @random), class: "btn btn-default" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for serie <- @series do %>
+    <tr>
+      <td><%= serie %></td>
+      <td class="text-right">
+        <span><%= link "Show", to: serie_path(@conn, :show, serie), class: "btn btn-default btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
