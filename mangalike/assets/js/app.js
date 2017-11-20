@@ -73,7 +73,7 @@ $(function() {
       	continue;
       }
 
-      let toadd = $('<a href="/users/' + commentAndUserId.user_id + '"> View User Profile </a>' +
+      let toadd = $('<a href="/users/' + commentAndUserId.user_id + '"> View Profile of '+commentAndUserId.username+' </a>' +
       '<div class="card w-75 m-2"> ' +
       '<div class="card-body">' +
         '<h6 class=""></h6>' +
@@ -110,7 +110,8 @@ $(function() {
 
     let data = {review: {serie_id: s_id, user_id: user_id, rating: 3, comment: JSON.stringify({
     	user_id: user_id,
-    	comment: value
+    	comment: value,
+    	username: $('.text').text().trim()
     })}};
     
     // mix phx.gen.json Feedback Review reviews rating:integer comment:text serie_id:string user_id:references:users
