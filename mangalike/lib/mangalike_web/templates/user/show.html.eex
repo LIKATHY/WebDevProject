@@ -1,34 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Show User</title>
   </head>
-
   <body>
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col-sm-8 blog-main">
-
-        <div class="blog-header">
-          <h1 class="blog-title">User: <%= @user.name %></h1>
-          <p class="lead blog-description">Username: <%= @user.username %></p>
-          <p class="lead blog-description">Email: <%= @user.email %></p>
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-header">
+            <h1 class="blog-title">User: <%= @user.name %></h1>
+            <p class="lead blog-description">Username: <%= @user.username %></p>
+            <p class="lead blog-description">Email: <%= @user.email %></p>
+          </div>
+        </div>
+      </div>
+      <%= if (@current_user.is_admin?) || (@current_user.id == @user.id) do %>
+      <span><%= link "Edit", to: user_path(@conn, :edit, @user), class: "btn btn-primary btn-xs" %></span>
+      <% end %>
+      <span><%= link "Back", to: user_path(@conn, :index) %></span>
+    </div>
+    <div class="mt-4">
+      <ul class="nav nav-pills" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="pill" href="#reading" role="tab">Currently Reading</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#already" role="tab">Already Read</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#want" role="tab">Want to Read</a>
+        </li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="reading" role="tabpanel">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Currently Reading</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= for c <- @current do %>
+              <tr>
+                <td><%= c.serie %></td>
+                <td class="text-right">
+                  <span><%= link "Delete", to: list_path(@conn, :delete, c.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane" id="already" role="tabpanel">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Already Read</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= for a <- @already do %>
+              <tr>
+                <td><%= a.serie %></td>
+                <td class="text-right">
+                  <span><%= link "Delete", to: list_path(@conn, :delete, a.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane" id="want" role="tabpanel">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Want to Read</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= for w <- @want do %>
+              <tr>
+                <td><%= w.serie %></td>
+                <td class="text-right">
+                  <span><%= link "Delete", to: list_path(@conn, :delete, w.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-
-    <%= if (@current_user.is_admin?) || (@current_user.id == @user.id) do %>
-      <span><%= link "Edit", to: user_path(@conn, :edit, @user), class: "btn btn-primary btn-xs" %></span>
-    <% end %>
-
-    <span><%= link "Back", to: user_path(@conn, :index) %></span>
-
-
-
-  </div>
-
   </body>
 </html>

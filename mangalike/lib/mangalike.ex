@@ -8,7 +8,7 @@ defmodule Mangalike do
   """
 
   def manga_list() do
-    resp = HTTPoison.get!("http://www.mangaeden.com/api/list/0/")
+    resp = HTTPoison.get!("http://www.mangaeden.com/api/list/1/")
     data = Poison.decode!(resp.body)
     data["manga"]
   end

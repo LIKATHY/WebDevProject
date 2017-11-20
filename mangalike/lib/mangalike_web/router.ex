@@ -25,6 +25,7 @@ defmodule MangalikeWeb.Router do
     resources "/series", SerieController, except: [:new, :edit, :create, :delete]
     resources "/reviews", ReviewController, except: [:new, :edit]
     resources "/chats", ChatController, except: [:new, :delete, :index]
+    resources "/lists", ListController
     post "/sessions", SessionController, :login
     delete "/sessions", SessionController, :logout
   end

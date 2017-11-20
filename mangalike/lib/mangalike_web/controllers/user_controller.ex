@@ -27,7 +27,10 @@ defmodule MangalikeWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
-    render(conn, "show.html", user: user)
+    already = Accounts.specific_list(id, "Already Read")
+    current = Accounts.specific_list(id, "Currently Reading")
+    want = Accounts.specific_list(id, "Want to Read")
+    render(conn, "show.html", user: user, already: already, current: current, want: want)
   end
 
   def edit(conn, %{"id" => id}) do
