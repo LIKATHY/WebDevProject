@@ -1,3 +1,4 @@
+# Attribute to Prof Nathaniel Tuck's class notes and code
 defmodule MangalikeWeb.Router do
   use MangalikeWeb, :router
   import MangalikeWeb.Plugs
@@ -29,7 +30,9 @@ defmodule MangalikeWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", MangalikeWeb do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", MangalikeWeb do
+    pipe_through :api
+
+    resources "/reviews", ReviewController, except: [:new, :edit]
+  end
 end

@@ -27,6 +27,7 @@ defmodule MangalikeWeb.SerieController do
   end
 
   def show(conn, %{"id" => id}) do
+    #serie = Manga.get_serie!(id)
     manga = Mangalike.get_manga_info(Mangalike.get_id_by_title(id))
     #chat = %Chat{name: manga["title"]}
     render(conn, "show.html", manga: manga)

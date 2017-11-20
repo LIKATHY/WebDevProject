@@ -3,7 +3,6 @@ defmodule Mangalike.Manga.Serie do
   import Ecto.Changeset
   alias Mangalike.Manga.Serie
 
-
   schema "series" do
     field :title, :string
 
