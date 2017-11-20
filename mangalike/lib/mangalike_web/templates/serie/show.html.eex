@@ -1,6 +1,8 @@
 <%# Attribute to Prof Nathaniel Tuck's class notes and code %>
 
-<h2 id="mangaTitleId"><%= @manga["title"] %> Information </h2>
+<h2>
+	<span id="mangaTitleId"><%= @manga["title"] %> Information </span>
+</h2>
 <ul>
 	<li>
 		<strong>Summary:</strong>
@@ -23,4 +25,39 @@
 		</ul>
 	</li>
 </ul>
+
+<div id="serie-reviews">
+
+</div>
+
+<script id="reviews-template" type="text/x-handlebars-template">
+  <div class="m-2">
+    <h2>Reviews</h2>
+
+    {{#each data}}
+    <div class="card w-75 m-2">
+      <div class="card-body">
+        <h6 class=""></h6>
+        <div class="card-text">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    
+    <p>No reviews yet.</p>
+    { {/each}}
+  </div>
+</script>
+
+<div id="thinfdsadsfjl"></div>
+
+
+<%= if @current_user do %>
+<div class="m-2">
+  <h2>Add Review</h2>
+  <textarea id="review-comment" class="form-control"></textarea>
+  <button id="review-add-button" data-user-id="<%= @current_user.id %>" class="btn btn-primary">Add Review</button>
+</div>
+<% end %>
+
 <span><%= link "Back", to: serie_path(@conn, :index) %></span>

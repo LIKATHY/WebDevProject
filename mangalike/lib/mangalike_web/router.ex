@@ -6,7 +6,7 @@ defmodule MangalikeWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_user
   end
@@ -24,6 +24,7 @@ defmodule MangalikeWeb.Router do
     resources "/users", UserController
     resources "/series", SerieController, except: [:new, :edit, :create, :delete]
     resources "/chats", ChatController
+    resources "/reviews", ReviewController, except: [:new, :edit]
     post "/sessions", SessionController, :login
     delete "/sessions", SessionController, :logout
   end
