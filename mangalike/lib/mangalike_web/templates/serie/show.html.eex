@@ -1,7 +1,14 @@
 <h2>
 <span id="mangaTitleId"><%= @manga["title"] %> Information </span>
 </h2>
+
+<%= if !@current_user do %>
+<p>Please login to chat or review!</p>
+<% end %>
+
+<%= if @current_user do %>
 <span><%= link "Chat", to: chat_path(@conn, :show, @chat), class: "btn btn-default btn-xs" %></span>
+<% end %>
 
 <ul>
 	<li>
