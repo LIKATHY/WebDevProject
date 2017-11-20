@@ -23,7 +23,7 @@ defmodule MangalikeWeb.Router do
     get "/", PageController, :index
     resources "/users", UserController
     resources "/series", SerieController, except: [:new, :edit, :create, :delete]
-    resources "/chats", ChatController
+    resources "/chats", ChatController, except: [:new, :delete, :index]
     post "/sessions", SessionController, :login
     delete "/sessions", SessionController, :logout
   end

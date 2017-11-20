@@ -4,6 +4,8 @@ defmodule MangalikeWeb.UserSocket do
   ## Channels
   # channel "room:*", MangalikeWeb.RoomChannel
 
+   channel "chat_messages:*", MangalikeWeb.ChatMesssagesChannel
+
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
   # transport :longpoll, Phoenix.Transports.LongPoll
