@@ -12,6 +12,7 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
+import he from "he"
 
 // Import local files
 //
@@ -19,3 +20,23 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
  import socket from "./socket"
+
+// import socket from "./socket"
+function updateMangaTitleId() {
+	let ele = $('#mangaTitleId')
+	if (ele) {
+		let output = he.decode(ele.text())
+		console.log(output)
+		ele.text(output)
+	}
+ 	
+ 	ele = $('#mangaSummaryId')
+ 	if (ele) {
+ 		let output = he.decode(ele.text())
+ 		console.log(output)
+ 		ele.text(output)
+ 	}
+ }
+
+ 
+ $(updateMangaTitleId)

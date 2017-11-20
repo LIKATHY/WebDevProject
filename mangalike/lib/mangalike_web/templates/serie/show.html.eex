@@ -1,11 +1,9 @@
-<h2><%= @manga["title"] %> Information </h2>
-
+<h2 id="mangaTitleId"><%= @manga["title"] %> Information </h2>
 <span><%= link "Chat", to: chat_path(@conn, :show, @chat), class: "btn btn-default btn-xs" %></span>
-
 <ul>
 	<li>
 		<strong>Summary:</strong>
-		<%= @manga["description"] %>
+		<span id="mangaSummaryId"><%= @manga["description"] %></span>
 	</li>
 	<li>
 		<strong>Artist:</strong>
