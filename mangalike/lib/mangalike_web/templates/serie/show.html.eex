@@ -25,11 +25,7 @@
 		</ul>
 	</li>
 </ul>
-
-<div id="serie-reviews">
-
-</div>
-
+<h2>Reviews</h2><br>
 <script id="reviews-template" type="text/x-handlebars-template">
   <div class="m-2">
     <h2>Reviews</h2>
@@ -50,7 +46,6 @@
 </script>
 
 <div id="thinfdsadsfjl"></div>
-
 
 <%= if @current_user do %>
 <div class="m-2">

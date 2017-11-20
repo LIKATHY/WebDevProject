@@ -75,17 +75,16 @@ $(function() {
       	continue;
       }
 
-      let toadd = $('<a href="/users/' + commentAndUserId.user_id + '"> View Profile of '+commentAndUserId.username+' </a>' +
+      let toadd = $('<a href="/users/' + commentAndUserId.user_id + '"> '+commentAndUserId.username+' </a>' +
       '<div class="card w-75 m-2"> ' +
-      '<div class="card-body">' +
+       '<div class="card-body">' +
         '<h6 class=""></h6>' +
         '<div class="card-text">' +
           '<p>' + commentAndUserId.comment + '</p>' +
         '</div>' +
-      '</div>' +
-    '</div>')
-
-
+       '</div>' +
+      '</div>')
+  	  
       outer.append(toadd)
 
       }
@@ -103,9 +102,6 @@ $(function() {
 
   function add_review() {
 
-
-  	// get the value of the text box
-
   	let value  =$('#review-comment').val()
   	console.log(value)
 
@@ -116,8 +112,6 @@ $(function() {
     	username: $('.text').text().trim()
     })}};
     
-    // mix phx.gen.json Feedback Review reviews rating:integer comment:text serie_id:string user_id:references:users
-
     console.log('adding review')
     $.ajax({
       url: '/reviews',
@@ -141,28 +135,13 @@ $(function() {
       method: "DELETE",
       success: fetch_reviews,
     });
-
   }
 
-
   function button_clicked() {
-
-	// var this_user_reviewed = data_map[window.user_email]
-
-	// if (this_user_reviewed) {
-		// unlike here
-		// remove_review()
-		// $('#review-add-button').html('Write Review!')
-	// }
-	// else {
 		add_review();
-	// 	$('#review-add-button').html('Delete Review')
-
-	// }	
   }
 
   ReviewButton.click(button_clicked);
-
   fetch_reviews();
 
 });
@@ -184,5 +163,4 @@ function updateMangaTitleId() {
  	}
  }
 
- 
  $(updateMangaTitleId)
