@@ -1,20 +1,32 @@
-<h2>Listing Manga</h2>
-<%= link "Random", to: serie_path(@conn, :show, @random), class: "btn btn-default" %>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= for serie <- @series do %>
-    <tr>
-      <td><%= serie %></td>
-      <td class="text-right">
-        <span><%= link "Show", to: serie_path(@conn, :show, serie), class: "btn btn-default btn-xs" %></span>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>All Mangas</title>
+  </head>
+
+  <body>
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Explore All Mangas!</h1>
+      </div>
+    </section>
+
+     <left> <div class="col-lg-12">
+       <%= for serie <- @series do %>
+          <div class="p-1 mb-2 text-black" style="border-radius: 10px; border-color: #0c5460;border-width: 1px; border-style: solid;">
+              <p>Manga: <%= serie %></p>
+
+              <p class="text-right">
+                <span><%= link "Show", to: serie_path(@conn, :show, serie), class: "btn btn-primary btn-xs" %></span>
+              </p>
+            </div>
+        <% end %>
+
+        </div>
+      </left>
+
+  </body>
+</html>
