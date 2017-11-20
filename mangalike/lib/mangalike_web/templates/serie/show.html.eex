@@ -1,13 +1,31 @@
-<h2 id="mangaTitleId"><%= @manga["title"] %> Information </h2>
+<h2>
+<span id="mangaTitleId"><%= @manga["title"] %> </span><br>
+</h2>
+<ul>
+	<div class="p-3 mb-2 text-black" style="border-radius: 25px; border-color: #0c5460;border-width: 1px; border-style: solid;">
+		<strong>Summary:</strong>
+		<p><span id="mangaSummaryId"><%= @manga["description"] %></span></p>
+		<p><strong>Artist:</strong>
+		<%= @manga["artist"] %></p>
+		<p><strong>Author:</strong>
+		<%= @manga["author"] %></p>
+		<strong>Genres:</strong>
+		<ul>
+			<%= for category <- @manga["categories"] do %>
+			<li><%= category %></li>
+			<% end %>
+		</ul>
+	</div>
+</ul>
+<%= if @current_user do %>
+<p><span><%= link "Chat", to: chat_path(@conn, :show, @chat), class: "btn btn-primary btn-xs" %></span></p>
 <div>
-
 	<%= form_for @lists, list_path(@conn, :create), fn f -> %>
 	<%= if @lists.action do %>
 	<div class="alert alert-danger">
 		<p>Oops, something went wrong! Please check the errors below.</p>
 	</div>
 	<% end %>
-	<%= if @current_user do %>
 	<div class="form-group">
 		<%= hidden_input f, :name, class: "form-control", value: "Already Read" %>
 		<%= error_tag f, :name %>
@@ -24,7 +42,6 @@
 		<%= submit "Add to Already Read", class: "btn btn-primary" %>
 	</div>
 	<% end %>
-	<% end %>
 </div>
 <div>
 	<%= form_for @lists, list_path(@conn, :create), fn f -> %>
@@ -33,7 +50,6 @@
 		<p>Oops, something went wrong! Please check the errors below.</p>
 	</div>
 	<% end %>
-	<%= if @current_user do %>
 	<div class="form-group">
 		<%= hidden_input f, :name, class: "form-control", value: "Currently Reading" %>
 		<%= error_tag f, :name %>
@@ -50,7 +66,6 @@
 		<%= submit "Add to Currently Reading", class: "btn btn-primary" %>
 	</div>
 	<% end %>
-	<% end %>
 </div>
 <div>
 	<%= form_for @lists, list_path(@conn, :create), fn f -> %>
@@ -59,7 +74,6 @@
 		<p>Oops, something went wrong! Please check the errors below.</p>
 	</div>
 	<% end %>
-	<%= if @current_user do %>
 	<div class="form-group">
 		<%= hidden_input f, :name, class: "form-control", value: "Want to Read" %>
 		<%= error_tag f, :name %>
@@ -76,30 +90,36 @@
 		<%= submit "Add to Want to Read", class: "btn btn-primary" %>
 	</div>
 	<% end %>
-	<% end %>
 </div>
 <div>
-	<ul>
-		<li>
-			<strong>Summary:</strong>
-			<span id="mangaSummaryId"><%= @manga["description"] %></span>
-		</li>
-		<li>
-			<strong>Artist:</strong>
-			<%= @manga["artist"] %>
-		</li>
-		<li>
-			<strong>Author:</strong>
-			<%= @manga["author"] %>
-		</li>
-		<li>
-			<strong>Genres:</strong>
-			<ul>
-				<%= for category <- @manga["categories"] do %>
-				<li><%= category %></li>
-				<% end %>
-			</ul>
-		</li>
-	</ul>
-</div>
-<span><%= link "Back", to: serie_path(@conn, :index) %></span>
+	<% end %>
+	<%= if !@current_user do %>
+	<p>Please login to chat or review!</p><br>
+	<% end %>
+	<h2>Reviews</h2><br>
+	<script id="reviews-template" type="text/x-handlebars-template">
+	<div class="m-2">
+			<h2>Reviews</h2>
+			{{#each data}}
+			<div class="card w-75 m-2">
+					<div class="card-body">
+							<h6 class=""></h6>
+							<div class="card-text">
+									<p></p>
+							</div>
+					</div>
+			</div>
+			
+			<p>No reviews yet.</p>
+			{ {/each}}
+	</div>
+	</script>
+	<div id="thinfdsadsfjl"></div>
+	<%= if @current_user do %>
+	<div class="m-2">
+		<h2>Add Review</h2>
+		<textarea id="review-comment" class="form-control"></textarea>
+		<button id="review-add-button" data-user-id="<%= @current_user.id %>" class="btn btn-primary">Add Review</button>
+	</div>
+	<% end %>
+	<span><%= link "Back", to: serie_path(@conn, :index) %></span>

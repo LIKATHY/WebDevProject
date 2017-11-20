@@ -17,7 +17,6 @@
 
      <center> <div class="col-lg-8">
 
-
        <%= for user <- @users do %>
           <div class="p-3 mb-2 text-black" style="border-radius: 25px; border-color: #0c5460;border-width: 1px; border-style: solid;">
               <h2>Username: <%= user.username %></h2>
