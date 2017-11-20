@@ -73,7 +73,7 @@ if(window.roomName) {
 
   channel.on("new_msg", payload => {
     let messageItem = document.createElement("p");
-    messageItem.innerText = `[${Date()}] ${payload.body}`
+    messageItem.innerText = window.user + ":     " + `${payload.body}`
     messagesContainer.appendChild(messageItem)
   })
 }
