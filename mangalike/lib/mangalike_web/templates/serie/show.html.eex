@@ -1,25 +1,105 @@
 <h2 id="mangaTitleId"><%= @manga["title"] %> Information </h2>
-<span><%= link "Chat", to: chat_path(@conn, :show, @chat), class: "btn btn-default btn-xs" %></span>
-<ul>
-	<li>
-		<strong>Summary:</strong>
-		<span id="mangaSummaryId"><%= @manga["description"] %></span>
-	</li>
-	<li>
-		<strong>Artist:</strong>
-		<%= @manga["artist"] %>
-	</li>
-	<li>
-		<strong>Author:</strong>
-		<%= @manga["author"] %>
-	</li>
-	<li>
-		<strong>Genres:</strong>
-		<ul>
-			<%= for category <- @manga["categories"] do %>
-			<li><%= category %></li>
-			<% end %>
-		</ul>
-	</li>
-</ul>
+<div>
+
+	<%= form_for @lists, list_path(@conn, :create), fn f -> %>
+	<%= if @lists.action do %>
+	<div class="alert alert-danger">
+		<p>Oops, something went wrong! Please check the errors below.</p>
+	</div>
+	<% end %>
+	<%= if @current_user do %>
+	<div class="form-group">
+		<%= hidden_input f, :name, class: "form-control", value: "Already Read" %>
+		<%= error_tag f, :name %>
+	</div>
+	<div class="form-group">
+		<%= hidden_input f, :user, class: "form-control", value: @current_user.username %>
+		<%= error_tag f, :user %>
+	</div>
+	<div class="form-group">
+		<%= hidden_input f, :serie, class: "form-control", value: @manga["title"] %>
+		<%= error_tag f, :serie %>
+	</div>
+	<div class="form-group">
+		<%= submit "Add to Already Read", class: "btn btn-primary" %>
+	</div>
+	<% end %>
+	<% end %>
+</div>
+<div>
+	<%= form_for @lists, list_path(@conn, :create), fn f -> %>
+	<%= if @lists.action do %>
+	<div class="alert alert-danger">
+		<p>Oops, something went wrong! Please check the errors below.</p>
+	</div>
+	<% end %>
+	<%= if @current_user do %>
+	<div class="form-group">
+		<%= hidden_input f, :name, class: "form-control", value: "Currently Reading" %>
+		<%= error_tag f, :name %>
+	</div>
+	<div class="form-group">
+		<%= hidden_input f, :user, class: "form-control", value: @current_user.username %>
+		<%= error_tag f, :user %>
+	</div>
+	<div class="form-group">
+		<%= hidden_input f, :serie, class: "form-control", value: @manga["title"] %>
+		<%= error_tag f, :serie %>
+	</div>
+	<div class="form-group">
+		<%= submit "Add to Currently Reading", class: "btn btn-primary" %>
+	</div>
+	<% end %>
+	<% end %>
+</div>
+<div>
+	<%= form_for @lists, list_path(@conn, :create), fn f -> %>
+	<%= if @lists.action do %>
+	<div class="alert alert-danger">
+		<p>Oops, something went wrong! Please check the errors below.</p>
+	</div>
+	<% end %>
+	<%= if @current_user do %>
+	<div class="form-group">
+		<%= hidden_input f, :name, class: "form-control", value: "Want to Read" %>
+		<%= error_tag f, :name %>
+	</div>
+	<div class="form-group">
+		<%= hidden_input f, :user, class: "form-control", value: @current_user.username %>
+		<%= error_tag f, :user %>
+	</div>
+	<div class="form-group">
+		<%= hidden_input f, :serie, class: "form-control", value: @manga["title"] %>
+		<%= error_tag f, :serie %>
+	</div>
+	<div class="form-group">
+		<%= submit "Add to Want to Read", class: "btn btn-primary" %>
+	</div>
+	<% end %>
+	<% end %>
+</div>
+<div>
+	<ul>
+		<li>
+			<strong>Summary:</strong>
+			<span id="mangaSummaryId"><%= @manga["description"] %></span>
+		</li>
+		<li>
+			<strong>Artist:</strong>
+			<%= @manga["artist"] %>
+		</li>
+		<li>
+			<strong>Author:</strong>
+			<%= @manga["author"] %>
+		</li>
+		<li>
+			<strong>Genres:</strong>
+			<ul>
+				<%= for category <- @manga["categories"] do %>
+				<li><%= category %></li>
+				<% end %>
+			</ul>
+		</li>
+	</ul>
+</div>
 <span><%= link "Back", to: serie_path(@conn, :index) %></span>
