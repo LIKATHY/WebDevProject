@@ -1,8 +1,10 @@
-<h2><%= @manga["title"] %> Information </h2>
+<%# Attribute to Prof Nathaniel Tuck's class notes and code %>
+
+<h2 id="mangaTitleId"><%= @manga["title"] %> Information </h2>
 <ul>
 	<li>
 		<strong>Summary:</strong>
-		<%= @manga["description"] %>
+		<span id="mangaSummaryId"><%= @manga["description"] %></span>
 	</li>
 	<li>
 		<strong>Artist:</strong>
