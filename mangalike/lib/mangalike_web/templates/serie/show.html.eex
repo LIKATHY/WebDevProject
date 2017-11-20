@@ -1,22 +1,36 @@
-<h2>
-<span id="mangaTitleId"><%= @manga["title"] %> </span><br>
-</h2>
-<ul>
-	<div class="p-3 mb-2 text-black" style="border-radius: 25px; border-color: #0c5460;border-width: 1px; border-style: solid;">
-		<strong>Summary:</strong>
-		<p><span id="mangaSummaryId"><%= @manga["description"] %></span></p>
-		<p><strong>Artist:</strong>
-		<%= @manga["artist"] %></p>
-		<p><strong>Author:</strong>
-		<%= @manga["author"] %></p>
-		<strong>Genres:</strong>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>All Mangas</title>
+
+	<main role="main" class="container">
+      <div class="starter-template">
+        <h1><span id="mangaTitleId"><%= @manga["title"] %> </span></h1>
+      </div>
+    </main>
+   </head>
+
+  <body>
 		<ul>
-			<%= for category <- @manga["categories"] do %>
-			<li><%= category %></li>
-			<% end %>
+			<div class="p-3 mb-2 text-black" style="border-radius: 25px; border-color: #0c5460;border-width: 1px; border-style: solid;">
+				<strong>Summary:</strong>
+				<p><span id="mangaSummaryId"><%= @manga["description"] %></span></p>
+				<p><strong>Artist:</strong>
+				<%= @manga["artist"] %></p>
+				<p><strong>Author:</strong>
+				<%= @manga["author"] %></p>	
+				<strong>Genres:</strong>
+				<ul>
+					<%= for category <- @manga["categories"] do %>
+					<li><%= category %></li>
+					<% end %>
+				</ul>
+			</div>
 		</ul>
-	</div>
-</ul>
+
 <%= if @current_user do %>
 <p><span><%= link "Chat", to: chat_path(@conn, :show, @chat), class: "btn btn-primary btn-xs" %></span></p>
 <div>
@@ -93,33 +107,41 @@
 </div>
 <div>
 	<% end %>
-	<%= if !@current_user do %>
-	<p>Please login to chat or review!</p><br>
-	<% end %>
-	<h2>Reviews</h2><br>
-	<script id="reviews-template" type="text/x-handlebars-template">
-	<div class="m-2">
-			<h2>Reviews</h2>
-			{{#each data}}
-			<div class="card w-75 m-2">
-					<div class="card-body">
-							<h6 class=""></h6>
-							<div class="card-text">
-									<p></p>
-							</div>
-					</div>
-			</div>
-			
-			<p>No reviews yet.</p>
-			{ {/each}}
-	</div>
-	</script>
-	<div id="thinfdsadsfjl"></div>
-	<%= if @current_user do %>
-	<div class="m-2">
-		<h2>Add Review</h2>
-		<textarea id="review-comment" class="form-control"></textarea>
-		<button id="review-add-button" data-user-id="<%= @current_user.id %>" class="btn btn-primary">Add Review</button>
-	</div>
-	<% end %>
-	<span><%= link "Back", to: serie_path(@conn, :index) %></span>
+
+	  <%= if !@current_user do %>
+		<p>Please login to chat or review!</p><br>
+		<% end %>
+
+		<h2>Reviews</h2><br>
+		<script id="reviews-template" type="text/x-handlebars-template">
+		  <div class="m-2">
+		    <h2>Reviews</h2>
+
+		    {{#each data}}
+		    <div class="card w-75 m-2">
+		      <div class="card-body">
+		        <h6 class=""></h6>
+		        <div class="card-text">
+		          <p></p>
+		        </div>
+		      </div>
+		    </div>
+		    
+		    <p>No reviews yet.</p>
+		    { {/each}}
+		  </div>
+		</script>
+
+		<div id="thinfdsadsfjl"></div>
+
+		<%= if @current_user do %>
+		<div class="m-2">
+		  <h2>Add Review</h2>
+		  <textarea id="review-comment" class="form-control"></textarea>
+		  <button id="review-add-button" data-user-id="<%= @current_user.id %>" class="btn btn-primary">Add Review</button>
+		</div>
+	  <% end %>
+	</body>
+
+  <span><%= link "Back", to: serie_path(@conn, :index) %></span>
+</html>
