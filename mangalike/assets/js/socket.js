@@ -53,10 +53,35 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 
+if(window.roomName) {
+  let roomName = "chat_messages:" + window.roomName;
+  console.log(roomName);
+  let channel = socket.channel(roomName, {})
+  channel.join()
+    .receive("ok", roomName => { console.log("Joined successfully", roomName) })
+    .receive("error", roomName => { console.log("Unable to join", roomName) })
+
+  let chatInput = document.querySelector("#chat-input")
+  let messagesContainer = document.querySelector("#messages")
+
+  chatInput.addEventListener("keypress", event => {
+    if(event.keyCode === 13){
+      channel.push("new_msg", {body: chatInput.value})
+      chatInput.value = "";
+    }
+  })
+
+  channel.on("new_msg", payload => {
+    let messageItem = document.createElement("p");
+    messageItem.innerText = `[${Date()}] ${payload.body}`
+    messagesContainer.appendChild(messageItem)
+  })
+}
+
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+//let channel = socket.channel("topic:subtopic", {})
+//channel.join()
+ // .receive("ok", resp => { console.log("Joined successfully", resp) })
+ // .receive("error", resp => { console.log("Unable to join", resp) })
 
 export default socket

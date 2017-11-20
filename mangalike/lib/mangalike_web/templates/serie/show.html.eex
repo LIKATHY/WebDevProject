@@ -1,8 +1,8 @@
-<%# Attribute to Prof Nathaniel Tuck's class notes and code %>
-
 <h2>
-	<span id="mangaTitleId"><%= @manga["title"] %> Information </span>
+<span id="mangaTitleId"><%= @manga["title"] %> Information </span>
 </h2>
+<span><%= link "Chat", to: chat_path(@conn, :show, @chat), class: "btn btn-default btn-xs" %></span>
+
 <ul>
 	<li>
 		<strong>Summary:</strong>
