@@ -1,37 +1,35 @@
+
+
+
 <h2>
-<span id="mangaTitleId"><%= @manga["title"] %> Information </span>
+<span id="mangaTitleId"><%= @manga["title"] %> </span><br>
 </h2>
 
-<%= if !@current_user do %>
-<p>Please login to chat or review!</p>
-<% end %>
-
-<%= if @current_user do %>
-<span><%= link "Chat", to: chat_path(@conn, :show, @chat), class: "btn btn-default btn-xs" %></span>
-<% end %>
-
 <ul>
-	<li>
+	<div class="p-3 mb-2 text-black" style="border-radius: 25px; border-color: #0c5460;border-width: 1px; border-style: solid;">
 		<strong>Summary:</strong>
-		<span id="mangaSummaryId"><%= @manga["description"] %></span>
-	</li>
-	<li>
-		<strong>Artist:</strong>
-		<%= @manga["artist"] %>
-	</li>
-	<li>
-		<strong>Author:</strong>
-		<%= @manga["author"] %>
-	</li>
-	<li>
+		<p><span id="mangaSummaryId"><%= @manga["description"] %></span></p>
+		<p><strong>Artist:</strong>
+		<%= @manga["artist"] %></p>
+		<p><strong>Author:</strong>
+		<%= @manga["author"] %></p>	
 		<strong>Genres:</strong>
 		<ul>
 			<%= for category <- @manga["categories"] do %>
 			<li><%= category %></li>
 			<% end %>
 		</ul>
-	</li>
+	</div>
 </ul>
+
+<%= if @current_user do %>
+<p><span><%= link "Chat", to: chat_path(@conn, :show, @chat), class: "btn btn-primary btn-xs" %></span></p>
+<% end %>
+
+<%= if !@current_user do %>
+<p>Please login to chat or review!</p><br>
+<% end %>
+
 <h2>Reviews</h2><br>
 <script id="reviews-template" type="text/x-handlebars-template">
   <div class="m-2">
