@@ -66,14 +66,14 @@ if(window.roomName) {
 
   chatInput.addEventListener("keypress", event => {
     if(event.keyCode === 13){
-      channel.push("new_msg", {body: chatInput.value})
+      channel.push("new_msg", {body: chatInput.value, user: window.user})
       chatInput.value = "";
     }
   })
 
   channel.on("new_msg", payload => {
     let messageItem = document.createElement("p");
-    messageItem.innerText = window.user + ":     " + `${payload.body}`
+    messageItem.innerText = `${payload.user}` + ":     " + `${payload.body}`
     messagesContainer.appendChild(messageItem)
   })
 }

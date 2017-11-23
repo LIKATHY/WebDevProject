@@ -35,11 +35,6 @@ defmodule MangalikeWeb.ChatController do
     render(conn, "show.html", manga: manga)
   end
 
-  #def show(conn, %{"id" => id}) do
-  #  chat = Manga.get_chat!(id)
-  #  render(conn, "show.html", chat: chat)
-  #end
-
   def edit(conn, %{"id" => id}) do
     chat = Manga.get_chat!(id)
     changeset = Manga.change_chat(chat)
